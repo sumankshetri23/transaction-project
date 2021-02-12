@@ -61,7 +61,7 @@ public class CustomerService {
 		Optional<List<TransactionEntity>> optional = transactionRepository.findByAccountNumber(accountNumber);
 
 		if (optional.isPresent()) {
-			List<TransactionEntity> transactionEntities = transactionRepository.findAllByDateBetween(x, y);
+			List<TransactionEntity> transactionEntities = transactionRepository.findAllByDateBetween(accountNumber,x, y);
 			List<TransactionDto> transactionDtos = MapperUtil.mapTransactionListFromEntity(transactionEntities);
 			if (StringUtils.hasLength(type)) {
 				return transactionDtos.stream().filter(t -> type.equals(t.getType())).collect(Collectors.toList());

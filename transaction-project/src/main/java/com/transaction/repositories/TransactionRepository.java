@@ -15,8 +15,8 @@ import com.transaction.entities.TransactionEntity;
 public interface TransactionRepository extends JpaRepository<TransactionEntity, Integer> {
 
 
-	@Query("SELECT t FROM TransactionEntity t WHERE  t.date BETWEEN ?1 AND ?2")
-	List<TransactionEntity> findAllByDateBetween(LocalDate x, LocalDate y);
+	@Query("SELECT t FROM TransactionEntity t WHERE t.accountNumber=?1 AND t.date BETWEEN ?2 AND ?3")
+	List<TransactionEntity> findAllByDateBetween(String accountNumber, LocalDate x, LocalDate y);
 
 	@Query("select t from TransactionEntity t where t.accountNumber = ?1")
 	Optional<List<TransactionEntity>> findByAccountNumber(String accountNumber);
